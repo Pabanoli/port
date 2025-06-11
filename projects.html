@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>PaBaN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #6c5dd3, #4a6edb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-image {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover {
+            transform: translateY(-2px);
+        }
+        .filter-btn.active {
+            background: #6c5dd3;
+            color: white;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Enhanced PR Logo Styles */
+        .pr-logo {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .pr-logo:hover {
+            transform: translateY(-1px);
+        }
+        .pr-logo svg {
+            width: 140px;
+            height: 45px;
+            filter: drop-shadow(0 2px 4px rgba(108, 93, 211, 0.2));
+        }
+        .pr-logo-text {
+            fill: url(#gradient);
+            filter: drop-shadow(0 2px 4px rgba(108, 93, 211, 0.3));
+        }
+        .pr-logo-dot {
+            fill: #6c5dd3;
+            filter: drop-shadow(0 0 6px rgba(108, 93, 211, 0.6));
+            animation: pulse 2s infinite;
+        }
+        .pr-logo-name {
+            fill: url(#gradient);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            filter: drop-shadow(0 1px 2px rgba(108, 93, 211, 0.2));
+        }
+        .pr-logo:hover .pr-logo-text {
+            fill: url(#gradientHover);
+            filter: drop-shadow(0 2px 6px rgba(108, 93, 211, 0.4));
+        }
+        .pr-logo:hover .pr-logo-dot {
+            fill: #4a6edb;
+            filter: drop-shadow(0 0 8px rgba(74, 110, 219, 0.8));
+            animation: pulse 1.5s infinite;
+        }
+        .pr-logo:hover .pr-logo-name {
+            fill: url(#gradientHover);
+            filter: drop-shadow(0 2px 4px rgba(108, 93, 211, 0.3));
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        @media (max-width: 640px) {
+            .pr-logo svg {
+                width: 120px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#050027] text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-[#0a0a2a]/80 backdrop-blur-lg border-b border-[#3a2f8a] z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="pr-logo">
+                    <svg viewBox="0 0 140 45" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#6c5dd3"/>
+                                <stop offset="50%" style="stop-color:#5a4db3"/>
+                                <stop offset="100%" style="stop-color:#4a6edb"/>
+                            </linearGradient>
+                            <linearGradient id="gradientHover" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#4a6edb"/>
+                                <stop offset="50%" style="stop-color:#5a4db3"/>
+                                <stop offset="100%" style="stop-color:#6c5dd3"/>
+                            </linearGradient>
+                        </defs>
+                        <g>
+                            <!-- PR Letters with enhanced design -->
+                            <path class="pr-logo-text" d="M12 10h10c2.5 0 4.5 2 4.5 4.5v3c0 2.5-2 4.5-4.5 4.5h-5v7h-5V10zm10 7c1.4 0 2.5-1.1 2.5-2.5v-3c0-1.4-1.1-2.5-2.5-2.5h-5v8h5z"/>
+                            <path class="pr-logo-text" d="M30 10h5l7 14h-5l-1.5-3h-7l-1.5 3h-5l7-14zm3 8.5l-2.5-5-2.5 5h5z"/>
+                            
+                            <!-- Enhanced Dot -->
+                            <circle class="pr-logo-dot" cx="45" cy="10" r="2.5"/>
+                            
+                            <!-- PABAN OLI Text with better styling -->
+                            <text x="50" y="18" class="pr-logo-name" style="font-size: 9px;">PABAN OLI</text>
+                            
+                            <!-- Decorative Line -->
+                            <line x1="50" y1="20" x2="130" y2="20" stroke="url(#gradient)" stroke-width="0.5" opacity="0.3"/>
+                        </g>
+                    </svg>
+                </a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-[#6c5dd3] transition">Home</a>
+                    <a href="about.html" class="hover:text-[#6c5dd3] transition">About</a>
+                    <a href="projects.html" class="text-[#6c5dd3]">Projects</a>
+                    <a href="contact.html" class="hover:text-[#6c5dd3] transition">Contact</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-2xl" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed top-0 right-0 w-64 h-full bg-[#0a0a2a] z-50 p-6 md:hidden">
+        <div class="flex justify-between items-center mb-8">
+            <a href="index.html" class="pr-logo">
+                <svg viewBox="0 0 140 45" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#6c5dd3"/>
+                            <stop offset="50%" style="stop-color:#5a4db3"/>
+                            <stop offset="100%" style="stop-color:#4a6edb"/>
+                        </linearGradient>
+                        <linearGradient id="gradientHover" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#4a6edb"/>
+                            <stop offset="50%" style="stop-color:#5a4db3"/>
+                            <stop offset="100%" style="stop-color:#6c5dd3"/>
+                        </linearGradient>
+                    </defs>
+                    <g>
+                        <!-- PR Letters with enhanced design -->
+                        <path class="pr-logo-text" d="M12 10h10c2.5 0 4.5 2 4.5 4.5v3c0 2.5-2 4.5-4.5 4.5h-5v7h-5V10zm10 7c1.4 0 2.5-1.1 2.5-2.5v-3c0-1.4-1.1-2.5-2.5-2.5h-5v8h5z"/>
+                        <path class="pr-logo-text" d="M30 10h5l7 14h-5l-1.5-3h-7l-1.5 3h-5l7-14zm3 8.5l-2.5-5-2.5 5h5z"/>
+                        
+                        <!-- Enhanced Dot -->
+                        <circle class="pr-logo-dot" cx="45" cy="10" r="2.5"/>
+                        
+                        <!-- PABAN OLI Text with better styling -->
+                        <text x="50" y="18" class="pr-logo-name" style="font-size: 9px;">PABAN OLI</text>
+                        
+                        <!-- Decorative Line -->
+                        <line x1="50" y1="20" x2="130" y2="20" stroke="url(#gradient)" stroke-width="0.5" opacity="0.3"/>
+                    </g>
+                </svg>
+            </a>
+            <button onclick="toggleMenu()" class="text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6">
+            <a href="index.html" class="text-white hover:text-[#6c5dd3] transition text-lg">Home</a>
+            <a href="about.html" class="text-white hover:text-[#6c5dd3] transition text-lg">About</a>
+            <a href="projects.html" class="text-[#6c5dd3] text-lg">Projects</a>
+            <a href="contact.html" class="text-white hover:text-[#6c5dd3] transition text-lg">Contact</a>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section class="pt-32 pb-20">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl font-bold mb-12 text-center">My Projects</h1>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn active px-6 py-2 rounded-full bg-[#1a1464]/30 backdrop-blur-lg border border-[#3a2f8a] hover:bg-[#6c5dd3] transition"
+                        onclick="filterProjects('all')">
+                    All
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-[#1a1464]/30 backdrop-blur-lg border border-[#3a2f8a] hover:bg-[#6c5dd3] transition"
+                        onclick="filterProjects('web')">
+                   E-commerce platform
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-[#1a1464]/30 backdrop-blur-lg border border-[#3a2f8a] hover:bg-[#6c5dd3] transition"
+                        onclick="filterProjects('mobile')">
+                   Web Apps
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-[#1a1464]/30 backdrop-blur-lg border border-[#3a2f8a] hover:bg-[#6c5dd3] transition"
+                        onclick="filterProjects('ui')">
+                    Web Design
+                </button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-[#1a1464]/30 backdrop-blur-lg rounded-3xl overflow-hidden border border-[#3a2f8a]" data-category="web">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/POR.png" 
+                             alt="Project 1" 
+                             class="w-full h-full object-cover project-image">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1464] to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+                        <p class="text-[#cbd5e1] mb-4">A full-featured e-commerce platform with real-time inventory management.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm">HTML</span>
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm">PHP</span>
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm">SQL</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Pabanoli/port" class="text-[#6c5dd3] hover:text-[#4a6edb] transition" target="_blank">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                            <a href="https://pabanoli.com.np/" class="text-[#6c5dd3] hover:text-[#4a6edb] transition" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-[#1a1464]/30 backdrop-blur-lg rounded-3xl overflow-hidden border border-[#3a2f8a]" data-category="mobile">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/CAR.png" 
+                             alt="Project 2" 
+                             class="w-full h-full object-cover project-image">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1464] to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Car Tracking Game</h3>
+                        <p class="text-[#cbd5e1] mb-4"> A game where you control a car and avoid obstacles on the road.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm">JavaScript</span>
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm"> HTML</span>
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm"> PHP</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Pabanoli/Car_game" class="text-[#6c5dd3] hover:text-[#4a6edb] transition" target="_blank">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                            <a href="https://pabanoli.github.io/Car_game/" class="text-[#6c5dd3] hover:text-[#4a6edb] transition" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card bg-[#1a1464]/30 backdrop-blur-lg rounded-3xl overflow-hidden border border-[#3a2f8a]" data-category="ui">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" 
+                             alt="Project 3" 
+                             class="w-full h-full object-cover project-image">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1a1464] to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Design System</h3>
+                        <p class="text-[#cbd5e1] mb-4">A comprehensive design system with reusable components and guidelines.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm">Figma</span>
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm">Storybook</span>
+                            <span class="px-3 py-1 rounded-full bg-[#2e2a5a] text-sm">React</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-[#6c5dd3] hover:text-[#4a6edb] transition">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                            <a href="#" class="text-[#6c5dd3] hover:text-[#4a6edb] transition">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Project filtering
+        function filterProjects(category) {
+            const projects = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category)) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Filter projects
+            projects.forEach(project => {
+                if (category === 'all' || project.dataset.category === category) {
+                    project.style.display = 'block';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html> 
